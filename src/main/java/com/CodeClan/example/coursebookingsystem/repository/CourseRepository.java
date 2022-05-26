@@ -12,5 +12,5 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
     List<Course> findByRating(int rating);
     Course findByName(String name);
     List<Course> findByBookingsCustomer(Customer customer);
-//    List<Course> findByCustomer(String name);
+
 }
