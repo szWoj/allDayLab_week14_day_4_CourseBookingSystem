@@ -35,10 +35,12 @@ public class CourseController {
 
     @GetMapping(value = "/courses")
     public ResponseEntity<List<Course>> findCourseByRating(@RequestParam(name = "rating", required = false) Integer rating,
-                                                           @RequestParam(name="customer", required = false) String customer){
+                                                           @RequestParam(name = "customer", required = false) String customer
+                                                           ){
         if(rating != null){
             return new ResponseEntity<>(courseRepository.findByRating(rating), HttpStatus.OK);
         }
+
         if(customer != null){
             Customer newCustomer = customerRepository.findByName(customer);
             return new ResponseEntity<>(courseRepository.findByBookingsCustomer(newCustomer), HttpStatus.OK);

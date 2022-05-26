@@ -10,5 +10,8 @@ import java.util.List;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
     List<Customer> findByBookingsCourse(Course course);
+
     Customer findByName(String name);
+
+    List<Customer> findByTownAndBookingsCourse(String town, Course course);
 }

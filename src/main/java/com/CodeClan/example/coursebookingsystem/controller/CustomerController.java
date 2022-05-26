@@ -34,11 +34,18 @@ public class CustomerController {
     }
 
     @GetMapping(value = "/customers")
-    public ResponseEntity findByBookingsCourse(@RequestParam(name = "course", required = false) String course){
+    public ResponseEntity findByBookingsCourse(@RequestParam(name = "course", required = false) String course,
+
+                                               @RequestParam(name = "town", required = false) String town){
+        if(town != null && course != null){
+            Course newCourse = courseRepository.findByName(course);
+            return new ResponseEntity<>(customerRepository.findByTownAndBookingsCourse(town, newCourse), HttpStatus.OK);
+        }
         if(course != null){
             Course newCourse = courseRepository.findByName(course);
             return new ResponseEntity<>(customerRepository.findByBookingsCourse(newCourse), HttpStatus.OK);
         }
+
         return new ResponseEntity<>(customerRepository.findAll(), HttpStatus.OK);
 
     }

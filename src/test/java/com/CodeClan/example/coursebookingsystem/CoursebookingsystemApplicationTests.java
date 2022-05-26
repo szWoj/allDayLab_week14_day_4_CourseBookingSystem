@@ -56,4 +56,12 @@ class CoursebookingsystemApplicationTests {
 		assertEquals(1, bookings.size());
 	}
 
+	@Test
+	public void getAllCustomersForGivenTownAndGivenCourse(){
+		Course course = courseRepository.getOne(1L);
+		List<Customer> foundCustomers = customerRepository.findByTownAndBookingsCourse("Edinburgh", course);
+		assertEquals(1, foundCustomers.size());
+
+	}
+
 }
